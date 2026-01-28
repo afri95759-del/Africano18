@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">الهدى الإسلامي</title>
+    
+    <!-- كود تفعيل أدسنس (تم إضافته هنا) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6074855739096869"
+     crossorigin="anonymous"></script>
+    
+    <!-- خطوط عربية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* لوحة ألوان إسلامية كلاسيكية */
+            --primary: #0f3d3e;       
+            --primary-light: #165c5e; 
+            --secondary: #c5a059;     /* ذهبي أنيق */
+            --bg-paper: #fdfbf7;     
+            --text-dark: #2c3e50;
+            --text-light: #fdfdfd;
+            --border-gold: #e0cfa9;
+            
+            --shadow-soft: 0 10px 30px rgba(15, 61, 62, 0.08);
+            --shadow-gold: 0 4px 15px rgba(197, 160, 89, 0.2);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+        
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            background-color: var(--bg-paper); 
+            color: var(--text-dark); 
+            line-height: 1.8; 
+            min-height: 100vh; 
+            display: flex; flex-direction: column;
+            /* نقشة هندسية خفيفة جداً للخلفية */
+            background-image: radial-gradient(var(--secondary) 0.5px, transparent 0.5px), radial-gradient(var(--secondary) 0.5px, var(--bg-paper) 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-color: #f8f6f1;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Amiri', serif; color: var(--primary); font-weight: 700; }
+
+        /* --- الهيدر (القائمة العلوية) --- */
+        header { 
+            background: var(--primary); 
+            background-image: linear-gradient(45deg, #0f3d3e 25%, #165c5e 25%, #165c5e 50%, #0f3d3e 50%, #0f3d3e 75%, #165c5e 75%, #165c5e 100%);
+            background-size: 4px 4px;
+            color: var(--text-light); 
+            padding: 15px 0; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2); 
+            position: sticky; top: 0; z-index: 100; 
+            border-bottom: 4px solid var(--secondary);
+        }
+
+        .container { width: 95%; max-width: 1200px; margin: 0 auto; }
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo { 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            color: var(--secondary); 
+            cursor: pointer; text-decoration: none; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-family: 'Amiri', serif;
+        }
+        
+        nav ul { list-style: none; display: flex; gap: 30px; }
+        nav a { 
+            color: var(--text-light); 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 1.05rem; 
+            transition: 0.3s; 
+            position: relative;
+            padding-bottom: 5px;
+        }
+        nav a::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: 0; right: 0;
+            background-color: var(--secondary); transition: width 0.3s;
+        }
+        nav a:hover { color: var(--secondary); }
+        nav a:hover::after { width: 100%; }
+
+        /* --- المحتوى الرئيسي --- */
+        main { padding: 40px 0; flex: 1; }
+
+        .section { display: none; animation: fadeUp 0.6s ease-out; }
+        .section.active { display: block; }
+        @keyframes fadeUp { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);} }
+
+        /* --- الكروت والتصميم --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        
+        .card { 
+            background: #fff; 
+            padding: 25px; 
+            border-radius: 15px; 
+            box-shadow: var(--shadow-soft); 
+            border: 1px solid rgba(197, 160, 89, 0.2); 
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            display: flex; flex-direction: column;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-gold); }
+        
+        .card .date { color: #888; font-size: 0.85rem; margin-bottom: 15px; display: block; border-bottom: 1px solid #eee; padding-bottom: 10px;}
+        .card .excerpt { font-family: 'Amiri', serif; font-size: 1.2rem; color: #444; margin-bottom: 20px; line-height: 1.7; flex-grow: 1; }
+
+        /* --- الأزرار --- */
+        .btn { 
+            padding: 12px 24px; border: none; border-radius: 30px; cursor: pointer; 
+            font-family: 'Cairo'; font-weight: 600; transition: 0.3s; 
+            display: inline-block; text-decoration: none; text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-primary { 
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); 
+            color: var(--secondary); border: 1px solid var(--secondary);
+            width: 100%;
+        }
+        .btn-primary:hover { background: var(--primary); color: #fff; }
+        
+        .btn-gold { 
+            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%); 
+            color: #fff; border: none;
+        }
+        .btn-gold:hover { transform: scale(1.02); box-shadow: 0 6px 15px rgba(197, 160, 89, 0.4); }
+
+        .btn-outline { 
+            background: transparent; border: 2px solid var(--primary); 
+            color: var(--primary); 
+        }
+        .btn-outline:hover { background: var(--primary); color: #fff; }
+        
+        .btn-sm { padding: 6px 12px; font-size: 0.85rem; width: auto; border-radius: 5px;}
+
+        /* --- عرض الصفحة --- */
+        .page-full-view { 
+            background: #fff; padding: 40px; border-radius: 15px; 
+            box-shadow: var(--shadow-soft); border-top: 5px solid var(--secondary); margin-bottom: 40px;
+        }
+        .page-full-content { font-family: 'Amiri', serif; font-size: 1.4rem; line-height: 2.2; color: #333; }
+
+        /* --- زر الأدمن --- */
+        .admin-fab {
+            position: fixed; bottom: 30px; left: 30px; width: 65px; height: 65px;
+            background: var(--secondary); border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 999; transition: transform 0.3s;
+            border: 3px solid #fff;
+        }
+        .admin-fab:hover { transform: rotate(90deg) scale(1.1); }
+        .admin-fab svg { width: 32px; height: 32px; fill: var(--primary); }
+
+        /* --- النافذة المنبثقة للمقال (Popup) --- */
+        .post-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        .post-content-box {
+            background: #fff; width: 90%; max-width: 750px; max-height: 90vh; overflow-y: auto;
+            border-radius: 15px; padding: 0; position: relative; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            border: 1px solid var(--secondary);
+            animation: zoomIn 0.3s ease;
+        }
+        @keyframes zoomIn { from {transform: scale(0.9); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+        
+        .post-header { 
+            padding: 25px; border-bottom: 2px solid #f0f0f0; 
+            position: sticky; top: 0; background: rgba(255,255,255,0.95); z-index: 10; 
+            border-radius: 15px 15px 0 0;
+            background-image: radial-gradient(#c5a059 1px, transparent 1px);
+            background-size: 10px 10px;
+            background-color: #fafafa;
+        }
+        .post-body { padding: 30px; font-family: 'Amiri', serif; font-size: 1.4rem; line-height: 2; color: #2c3e50; white-space: pre-wrap; text-align: justify;}
+        
+        .post-footer { 
+            padding: 20px 30px; border-top: 1px solid #eee; 
+            background: #fdfbf7; display: flex; gap: 15px; 
+            justify-content: flex-end; border-radius: 0 0 15px 15px;
+        }
+
+        /* الإعلانات */
+        .ad-slot {
+            width: 100%; min-height: 120px; background: #f4f4f4; border: 1px dashed #ccc;
+            display: flex; align-items: center; justify-content: center; margin: 20px 0; overflow: hidden; border-radius: 8px;
+            text-align: center;
+        }
+        .ad-label { font-size: 0.75rem; color: #aaa; font-family: 'Cairo'; background: #fff; padding: 3px 8px; border-radius: 10px; border: 1px solid #eee;}
+
+        /* --- لوحة التحكم --- */
+        .admin-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 61, 62, 0.8); z-index: 1000; align-items: center; justify-content: center;
+        }
+        .admin-box { 
+            background: #fff; width: 95%; max-width: 900px; max-height: 90vh; overflow-y: auto; 
+            border-radius: 15px; padding: 30px; position: relative; 
+            border-top: 6px solid var(--secondary); box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .close-btn { position: absolute; top: 20px; left: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #888; transition: 0.3s;}
+        .close-btn:hover { color: var(--danger); transform: rotate(90deg); }
+
+        .tabs-nav { display: flex; border-bottom: 2px solid #eee; margin-bottom: 25px; overflow-x: auto; padding-bottom: 5px;}
+        .tab-link { padding: 12px 20px; cursor: pointer; border-bottom: 3px solid transparent; font-weight: 600; color: #777; white-space: nowrap; font-family: 'Cairo'; border-radius: 5px 5px 0 0; }
+        .tab-link.active { border-color: var(--secondary); color: var(--primary); background: rgba(197, 160, 89, 0.05); }
+        
+        .tab-pane { display: none; animation: fadeUp 0.3s; }
+        .tab-pane.active { display: block; }
+
+        .form-group { margin-bottom: 20px; border: 1px solid #f0f0f0; padding: 15px; border-radius: 8px; background: #fafafa;}
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--primary); }
+        .form-control { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-family: 'Cairo'; background: #fff; transition: 0.3s;}
+        .form-control:focus { border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1); }
+
+        .seo-box { border-right: 4px solid var(--secondary); background: #fffcf5; }
+        .list-group { margin-top: 25px; border-top: 1px solid #eee; }
+        .list-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #eee; background: #fcfcfc; border-radius: 5px; margin-bottom: 5px;}
+        
+        .toast {
+            position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
+            background: var(--primary); color: #fff; padding: 15px 30px; border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2); opacity: 0; pointer-events: none; transition: 0.3s; z-index: 3000; font-weight: bold; border: 2px solid var(--secondary);
+        }
+
+        footer { 
+            background: var(--primary); color: #fff; text-align: center; padding: 30px 0; margin-top: auto; 
+            border-top: 5px solid var(--secondary); background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIiBvcGFjaXR5PSIwLjEiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0wIDQwTDQwIDBIMjBMMCAyMHpNMjAgNDBoMjBMMjAgMjB6Ii8+PC9zdmc+');
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-flex">
+            <a onclick="goHome()" class="logo" id="site-logo">الهدى الإسلامي</a>
+            <nav>
+                <ul id="nav-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <!-- الصفحات ستضاف هنا تلقائياً -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- الرئيسية (المنشورات) -->
+        <div id="view-home" class="section active">
+            <div class="card" style="text-align: center; padding: 60px; margin-bottom: 40px; border:none; background: transparent; box-shadow: none;">
+                <h1 style="font-size: 3rem; margin-bottom: 15px; color: var(--primary);">بسم الله الرحمن الرحيم</h1>
+                <p style="font-family: 'Amiri'; font-size: 1.5rem; margin-top: 15px; color: var(--secondary);">"وَقُل رَّبِّ زِدْنِي عِلْمًا"</p>
+            </div>
+
+            <h2 style="text-align: center; margin-bottom: 30px; position: relative; display: inline-block; width: 100%;">
+                <span style="background: var(--bg-paper); padding: 0 20px; color: var(--primary);">أحدث المقالات</span>
+                <span style="position: absolute; top: 50%; left: 10%; right: 10%; height: 1px; background: var(--secondary); z-index: -1; opacity: 0.5;"></span>
+            </h2>
+
+            <div id="posts-container" class="grid" style="margin-top: 30px;">
+                <!-- سيظهر هنا المنشورات -->
+            </div>
+        </div>
+
+        <!-- عرض صفحة واحدة -->
+        <div id="view-page" class="section">
+            <button class="btn btn-outline" onclick="goHome()" style="margin-bottom: 20px;">&larr; عودة للرئيسية</button>
+            
+            <div class="page-full-view">
+                <h1 id="page-view-title" style="text-align: center; margin-bottom: 30px; color: var(--primary); border-bottom: 2px solid var(--secondary); display: inline-block; padding-bottom: 10px;"></h1>
+                <div id="page-view-content" class="page-full-content"></div>
+            </div>
+
+            <!-- إضافة حاوية منشورات للصفحة -->
+            <h2 style="text-align: center; margin-bottom: 30px; position: relative; display: inline-block; width: 100%;">
+                <span style="background: var(--bg-paper); padding: 0 20px; color: var(--primary);">منشورات هذه الصفحة</span>
+                <span style="position: absolute; top: 50%; left: 10%; right: 10%; height: 1px; background: var(--secondary); z-index: -1; opacity: 0.5;"></span>
+            </h2>
+
+            <div id="page-posts-container" class="grid" style="margin-top: 30px;">
+                <!-- منشورات الصفحة المحددة -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p style="font-family: 'Amiri'; font-size: 1.1rem;">&copy; <span id="year"></span> <span id="footer-name">الهدى الإسلامي</span>. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- نافذة المقال المنبثقة (More Popup) -->
+    <div class="post-modal" id="post-modal">
+        <div class="post-content-box">
+            <button class="close-btn" onclick="closePostModal()">&times;</button>
+            
+            <div class="post-header">
+                <h2 id="modal-title" style="color: var(--primary); font-size: 2rem;">عنوان المقال</h2>
+                <span id="modal-date" style="color: #888; font-size: 0.9rem; font-family: 'Cairo';">2023-01-01</span>
+            </div>
+
+            <!-- منطقة الإعلان العلوي -->
+            <div id="modal-ad-top" class="ad-slot">
+                <span class="ad-label">مساحة إعلانية</span>
+            </div>
+
+            <div id="modal-body" class="post-body">
+                <!-- نص المقال هنا -->
+            </div>
+
+            <!-- منطقة الإعلان السفلي -->
+            <div id="modal-ad-bottom" class="ad-slot">
+                <span class="ad-label">مساحة إعلانية</span>
+            </div>
+
+            <div class="post-footer">
+                <button class="btn btn-outline" onclick="closePostModal()">عودة</button>
+                <button class="btn btn-primary" onclick="copyPostText()" style="width: auto;">نسخ النص</button>
+                <button class="btn btn-gold" onclick="sharePost()" style="width: auto;">مشاركة</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- زر الإدمن -->
+    <div class="admin-fab" onclick="openAdmin()">
+        <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.58 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+    </div>
+
+    <!-- نافذة لوحة التحكم -->
+    <div class="admin-overlay" id="admin-modal">
+        <div class="admin-box">
+            <button class="close-btn" onclick="closeAdmin()">&times;</button>
+            
+            <div id="login-view" style="text-align: center; padding: 50px 0;">
+                <h2 style="color: var(--primary); margin-bottom: 20px;">دخول الإدارة</h2>
+                <input type="password" id="admin-pass" class="form-control" placeholder="كلمة المرور (admin)" style="margin: 15px 0; text-align: center;">
+                <button class="btn btn-gold" onclick="login()">دخول</button>
+            </div>
+
+            <div id="dashboard-view" style="display: none;">
+                <h2 style="border-bottom: 2px solid var(--secondary); padding-bottom: 10px; margin-bottom: 20px;">لوحة التحكم</h2>
+                
+                <div class="tabs-nav">
+                    <div class="tab-link active" onclick="switchTab('posts')">المنشورات</div>
+                    <div class="tab-link" onclick="switchTab('pages')">الصفحات</div>
+                    <div class="tab-link" onclick="switchTab('ads')">الإعلانات</div>
+                    <div class="tab-link" onclick="switchTab('settings')">الإعدادات</div>
+                </div>
+
+                <!-- تبويب المنشورات -->
+                <div id="tab-posts" class="tab-pane active">
+                    <h3 id="post-form-heading">إضافة منشور جديد</h3>
+                    <input type="hidden" id="edit-post-index" value="-1">
+                    <div class="form-group">
+                        <label>العنوان</label>
+                        <input type="text" id="input-post-title" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>المحتوى</label>
+                        <textarea id="input-post-content" class="form-control" rows="6" required></textarea>
+                    </div>
+                    <!-- الحقل الجديد -->
+                    <div class="form-group">
+                        <label>مكان النشر (الصفحة)</label>
+                        <select id="input-post-target" class="form-control">
+                            <option value="home">الصفحة الرئيسية (الجميع)</option>
+                            <!-- سيتم ملء بقية الصفحات بالجافاسكربت -->
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <button id="btn-save-post" class="btn btn-gold" onclick="savePost()">نشر</button>
+                        <button id="btn-cancel-post" class="btn btn-outline" onclick="resetPostForm()" style="display:none;">إلغاء</button>
+                    </div>
+
+                    <div class="list-group" id="posts-admin-list"></div>
+                </div>
+
+                <!-- تبويب الصفحات -->
+                <div id="tab-pages" class="tab-pane">
+                    <h3 id="page-form-heading">إضافة صفحة جديدة</h3>
+                    <input type="hidden" id="edit-page-index" value="-1">
+                    
+                    <div class="form-group">
+                        <label>اسم الصفحة (مثلاً: من نحن)</label>
+                        <input type="text" id="input-page-title" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>المحتوى (HTML مسموح)</label>
+                        <textarea id="input-page-content" class="form-control" rows="6"></textarea>
+                    </div>
+                    
+                    <div class="form-group seo-box">
+                        <label>إعدادات SEO</label>
+                        <input type="text" id="input-page-seo-title" class="form-control" placeholder="عنوان محركات البحث" style="margin-bottom: 10px;">
+                        <textarea id="input-page-seo-desc" class="form-control" rows="2" placeholder="وصف محركات البحث" style="margin-bottom: 10px;"></textarea>
+                        <input type="text" id="input-page-seo-keys" class="form-control" placeholder="كلمات مفتاحية">
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <button id="btn-save-page" class="btn btn-gold" onclick="savePage()">حفظ الصفحة</button>
+                        <button id="btn-cancel-page" class="btn btn-outline" onclick="resetPageForm()" style="display:none;">إلغاء</button>
+                    </div>
+
+                    <div class="list-group" id="pages-admin-list"></div>
+                </div>
+
+                <!-- تبويب الإعلانات -->
+                <div id="tab-ads" class="tab-pane">
+                    <h3>إعدادات الإعلانات</h3>
+                    <div class="form-group">
+                        <label>كود الإعلان العلوي</label>
+                        <textarea id="ad-top-code" class="form-control" rows="4" placeholder="ضع كود الإعلان هنا (مثلاً كود AdSense Unit)..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>كود الإعلان السفلي</label>
+                        <textarea id="ad-bottom-code" class="form-control" rows="4" placeholder="ضع كود الإعلان هنا..."></textarea>
+                    </div>
+                    <button class="btn btn-gold" onclick="saveAds()">حفظ الإعلانات</button>
+                </div>
+
+                <!-- تبويب الإعدادات -->
+                <div id="tab-settings" class="tab-pane">
+                    <h3>الإعدادات العامة</h3>
+                    <div class="form-group">
+                        <label>اسم الموقع</label>
+                        <input type="text" id="set-name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>كلمة المرور</label>
+                        <input type="password" id="set-pass" class="form-control">
+                    </div>
+                    <div class="form-group seo-box">
+                        <label>SEO الافتراضي</label>
+                        <input type="text" id="set-seo-title" class="form-control" placeholder="عنوان الموقع">
+                        <textarea id="set-seo-desc" class="form-control" rows="2" placeholder="وصف الموقع" style="margin-top:10px"></textarea>
+                    </div>
+                    <button class="btn btn-gold" onclick="saveSettings()">حفظ الإعدادات</button>
+                    
+                    <div style="margin-top: 40px; border-top: 1px dashed #ccc; padding-top: 20px;">
+                        <button class="btn btn-outline" style="color: var(--danger); border-color: var(--danger);" onclick="forceReset()">إعادة ضبط المصنع (Reset)</button>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px; text-align: center;">
+                    <button class="btn btn-outline" onclick="logout()">خروج</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast-msg">تمت العملية</div>
+
+    <script>
+        // === البيانات ===
+        const DB_KEY = 'islamic_site_v9_adsense';
+        const defaultData = {
+            name: "الهدى الإسلامي",
+            password: "admin",
+            seo: { title: "الهدى الإسلامي", desc: "موقع إسلامي شامل" },
+            ads: { top: '', bottom: '' },
+            posts: [
+                { id: 1, title: 'أهمية الذكر', content: 'قال الله تعالى: "ألا بذكر الله تطمئن القلوب". الذكر هو غذاء الروح وسكينة النفس.', date: '2023-01-01', target: 'home' }
+            ],
+            pages: [
+                { id: 1, title: 'من نحن', content: '<h1>من نحن</h1><p>نحن موقع نسعى للخير.</p>', seo: { title: "من نحن", desc: "تعرف علينا", keywords: "" } }
+            ]
+        };
+
+        let db = {}; let isLoggedIn = false; let currentOpenPost = null;
+
+        // === التهيئة ===
+        function init() {
+            loadData();
+            document.getElementById('year').textContent = new Date().getFullYear();
+            document.getElementById('footer-name').textContent = db.name;
+            renderFrontend();
+            handleHash();
+            window.addEventListener('hashchange', handleHash);
+        }
+
+        function loadData() {
+            const saved = localStorage.getItem(DB_KEY);
+            if (saved) {
+                try {
+                    db = JSON.parse(saved);
+                    if (!db.posts) db.posts = [];
+                    if (!db.pages) db.pages = [];
+                    if (!db.ads) db.ads = { top: '', bottom: '' };
+                    if (!db.seo) db.seo = defaultData.seo;
+                    db.posts.forEach(p => { if(!p.target) p.target = 'home'; });
+                } catch (e) { db = defaultData; }
+            } else { db = defaultData; }
+            document.getElementById('site-logo').textContent = db.name;
+            applyGlobalSEO();
+        }
+
+        function saveToStorage() {
+            localStorage.setItem(DB_KEY, JSON.stringify(db));
+            document.getElementById('site-logo').textContent = db.name;
+            document.getElementById('footer-name').textContent = db.name;
+        }
+
+        function forceReset() {
+            if(confirm('هل أنت متأكد؟ سيتم حذف جميع البيانات وتنظيف الذاكرة.')) { 
+                localStorage.removeItem(DB_KEY); 
+                location.reload(); 
+            }
+        }
+
+        // === SEO ===
+        function applyGlobalSEO() { document.title = db.seo.title || db.name; }
+        function applyPageSEO(seoObj, pageTitle) {
+            if(seoObj && seoObj.title) document.title = seoObj.title;
+            else document.title = pageTitle + " - " + db.name;
+        }
+
+        // === الموقع (Frontend) ===
+        function goHome() { window.location.hash = 'home'; }
+
+        function renderNav() {
+            const nav = document.getElementById('nav-links');
+            nav.innerHTML = '<li><a href="#home">الرئيسية</a></li>';
+            db.pages.forEach(page => { nav.innerHTML += `<li><a href="#page-${page.id}">${page.title}</a></li>`; });
+        }
+
+        function handleHash() {
+            const hash = window.location.hash.substring(1);
+            document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+
+            if (!hash || hash === 'home') {
+                document.getElementById('view-home').classList.add('active');
+                renderPostsGrid('home', 'posts-container');
+                applyGlobalSEO();
+            } else if (hash.startsWith('page-')) {
+                const id = parseInt(hash.split('-')[1]);
+                const page = db.pages.find(p => p.id === id);
+                if (page) {
+                    document.getElementById('view-page').classList.add('active');
+                    document.getElementById('page-view-title').textContent = page.title;
+                    document.getElementById('page-view-content').innerHTML = page.content;
+                    applyPageSEO(page.seo, page.title);
+                    renderPostsGrid(id, 'page-posts-container');
+                } else { goHome(); }
+            } else { goHome(); }
+        }
+
+        function renderPostsGrid(filterId, containerId) {
+            const container = document.getElementById(containerId);
+            if(!container) return;
+            
+            container.innerHTML = '';
+            
+            const filteredPosts = db.posts.filter(post => {
+                return post.target === 'home' || post.target == filterId;
+            });
+
+            if (filteredPosts.length === 0) { 
+                if(filterId === 'home') {
+                    container.innerHTML = '<p style="text-align:center; width:100%; color:#999;">لا توجد منشورات حالياً.</p>'; 
+                } else {
+                    container.style.display = 'none';
+                }
+                return; 
+            } else {
+                container.style.display = 'grid';
+            }
+
+            [...filteredPosts].reverse().forEach(post => {
+                const div = document.createElement('div');
+                div.className = 'card';
+                div.innerHTML = `
+                    <h3>${post.title}</h3>
+                    <span class="date">${post.date}</span>
+                    <p class="excerpt">${post.content.substring(0, 60)}...</p>
+                    <button class="btn btn-gold" onclick="openPostModal(${post.id})" style="width:100%; margin-top:auto;">المزيد</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderFrontend() { renderNav(); renderPostsGrid('home', 'posts-container'); }
+
+        // === Popup ===
+        function openPostModal(id) {
+            const post = db.posts.find(p => p.id === id);
+            if(!post) return;
+            currentOpenPost = post;
+            
+            document.getElementById('modal-title').textContent = post.title;
+            document.getElementById('modal-date').textContent = post.date;
+            document.getElementById('modal-body').textContent = post.content;
+
+            const adTop = document.getElementById('modal-ad-top');
+            const adBottom = document.getElementById('modal-ad-bottom');
+            adTop.innerHTML = '<span class="ad-label">مساحة إعلانية</span>';
+            adBottom.innerHTML = '<span class="ad-label">مساحة إعلانية</span>';
+            if(db.ads.top) adTop.innerHTML += db.ads.top;
+            if(db.ads.bottom) adBottom.innerHTML += db.ads.bottom;
+
+            document.getElementById('post-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closePostModal() {
+            document.getElementById('post-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            currentOpenPost = null;
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('post-modal')) closePostModal();
+            if (event.target == document.getElementById('admin-modal')) closeAdmin();
+        }
+
+        function copyPostText() {
+            if(currentOpenPost) {
+                navigator.clipboard.writeText(`${currentOpenPost.title}\n\n${currentOpenPost.content}`).then(() => showToast('تم النسخ'));
+            }
+        }
+        function sharePost() {
+            if (navigator.share) navigator.share({ title: currentOpenPost.title, url: window.location.href });
+            else showToast(window.location.href);
+        }
+
+        // === لوحة التحكم (Admin) ===
+        function openAdmin() {
+            document.getElementById('admin-modal').style.display = 'flex';
+            if (isLoggedIn) {
+                document.getElementById('login-view').style.display = 'none';
+                document.getElementById('dashboard-view').style.display = 'block';
+                loadAdminData();
+            } else {
+                document.getElementById('login-view').style.display = 'block';
+                document.getElementById('dashboard-view').style.display = 'none';
+            }
+        }
+        function closeAdmin() { document.getElementById('admin-modal').style.display = 'none'; }
+        function login() {
+            const pass = document.getElementById('admin-pass').value;
+            if (pass === db.password) { isLoggedIn = true; document.getElementById('admin-pass').value = ''; openAdmin(); }
+            else { showToast('كلمة المرور خاطئة'); }
+        }
+        function logout() { isLoggedIn = false; closeAdmin(); }
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-link').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('tab-' + tabName).classList.add('active');
+            if(tabName !== 'posts') resetPostForm();
+            if(tabName !== 'pages') resetPageForm();
+        }
+        function loadAdminData() {
+            document.getElementById('set-name').value = db.name;
+            document.getElementById('set-seo-title').value = db.seo.title;
+            document.getElementById('set-seo-desc').value = db.seo.desc;
+            document.getElementById('ad-top-code').value = db.ads.top || '';
+            document.getElementById('ad-bottom-code').value = db.ads.bottom || '';
+            
+            updatePostTargetOptions();
+            
+            renderAdminPosts(); renderAdminPages();
+        }
+
+        function updatePostTargetOptions() {
+            const select = document.getElementById('input-post-target');
+            select.innerHTML = '<option value="home">الصفحة الرئيسية (الجميع)</option>';
+            db.pages.forEach(p => {
+                select.innerHTML += `<option value="${p.id}">صفحة: ${p.title}</option>`;
+            });
+        }
+
+        // --- Posts CRUD ---
+        function renderAdminPosts() {
+            const list = document.getElementById('posts-admin-list');
+            list.innerHTML = '';
+            db.posts.forEach((post, i) => {
+                let locationText = post.target === 'home' ? 'الرئيسية' : (db.pages.find(p=>p.id == post.target)?.title || 'غير محدد');
+                list.innerHTML += `
+                    <div class="list-item">
+                        <div style="flex:1;">
+                            <strong>${post.title}</strong><br>
+                            <small style="color:#888;">مكان النشر: ${locationText}</small>
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-outline" onclick="editPost(${i})">تعديل</button>
+                            <button class="btn btn-sm btn-outline" style="border-color:red; color:red" onclick="deletePost(${i})">حذف</button>
+                        </div>
+                    </div>`;
+            });
+        }
+        function savePost() {
+            const title = document.getElementById('input-post-title').value.trim();
+            const content = document.getElementById('input-post-content').value.trim();
+            const target = document.getElementById('input-post-target').value;
+            const idx = parseInt(document.getElementById('edit-post-index').value);
+            if (!title || !content) return showToast('املأ جميع الحقول');
+            if (idx === -1) db.posts.push({ id: Date.now(), title, content, date: new Date().toISOString().split('T')[0], target: target });
+            else { db.posts[idx].title = title; db.posts[idx].content = content; db.posts[idx].target = target; }
+            saveToStorage(); renderAdminPosts(); renderFrontend(); resetPostForm(); showToast('تم الحفظ');
+        }
+        function editPost(i) {
+            const p = db.posts[i];
+            document.getElementById('input-post-title').value = p.title;
+            document.getElementById('input-post-content').value = p.content;
+            document.getElementById('input-post-target').value = p.target || 'home';
+            
+            document.getElementById('edit-post-index').value = i;
+            document.getElementById('post-form-heading').textContent = "تعديل المنشور";
+            document.getElementById('btn-save-post').textContent = "حفظ التعديلات";
+            document.getElementById('btn-cancel-post').style.display = 'inline-block';
+        }
+        function resetPostForm() {
+            document.getElementById('input-post-title').value = '';
+            document.getElementById('input-post-content').value = '';
+            document.getElementById('input-post-target').value = 'home';
+            document.getElementById('edit-post-index').value = '-1';
+            document.getElementById('post-form-heading').textContent = "إضافة منشور جديد";
+            document.getElementById('btn-save-post').textContent = "نشر";
+            document.getElementById('btn-cancel-post').style.display = 'none';
+        }
+        function deletePost(i) {
+            if(confirm('حذف؟')) { db.posts.splice(i, 1); saveToStorage(); renderAdminPosts(); renderFrontend(); }
+        }
+
+        // --- Pages CRUD ---
+        function renderAdminPages() {
+            const list = document.getElementById('pages-admin-list');
+            list.innerHTML = '';
+            db.pages.forEach((p, i) => {
+                list.innerHTML += `<div class="list-item"><span>${p.title}</span><div><button class="btn btn-sm btn-outline" onclick="editPage(${i})">تعديل</button><button class="btn btn-sm btn-outline" style="border-color:red; color:red" onclick="deletePage(${i})">حذف</button></div></div>`;
+            });
+        }
+        function savePage() {
+            const title = document.getElementById('input-page-title').value.trim();
+            const content = document.getElementById('input-page-content').value.trim();
+            const seoT = document.getElementById('input-page-seo-title').value;
+            const seoD = document.getElementById('input-page-seo-desc').value;
+            const seoK = document.getElementById('input-page-seo-keys').value;
+            const idx = parseInt(document.getElementById('edit-page-index').value);
+            if (!title) return showToast('اسم الصفحة مطلوب');
+            if (idx === -1) db.pages.push({ id: Date.now(), title, content, seo: { title: seoT, desc: seoD, keywords: seoK } });
+            else { db.pages[idx].title = title; db.pages[idx].content = content; db.pages[idx].seo = { title: seoT, desc: seoD, keywords: seoK }; }
+            saveToStorage(); renderAdminPages(); renderNav(); resetPageForm(); showToast('تم الحفظ');
+        }
+        function editPage(i) {
+            const p = db.pages[i];
+            document.getElementById('input-page-title').value = p.title;
+            document.getElementById('input-page-content').value = p.content;
+            if(p.seo) {
+                document.getElementById('input-page-seo-title').value = p.seo.title || '';
+                document.getElementById('input-page-seo-desc').value = p.seo.desc || '';
+                document.getElementById('input-page-seo-keys').value = p.seo.keywords || '';
+            }
+            document.getElementById('edit-page-index').value = i;
+            document.getElementById('page-form-heading').textContent = "تعديل الصفحة";
+            document.getElementById('btn-save-page').textContent = "حفظ التغييرات";
+            document.getElementById('btn-cancel-page').style.display = 'inline-block';
+        }
+        function resetPageForm() {
+            document.getElementById('input-page-title').value = '';
+            document.getElementById('input-page-content').value = '';
+            document.getElementById('input-page-seo-title').value = '';
+            document.getElementById('input-page-seo-desc').value = '';
+            document.getElementById('input-page-seo-keys').value = '';
+            document.getElementById('edit-page-index').value = '-1';
+            document.getElementById('page-form-heading').textContent = "إضافة صفحة جديدة";
+            document.getElementById('btn-save-page').textContent = "حفظ الصفحة";
+            document.getElementById('btn-cancel-page').style.display = 'none';
+        }
+        function deletePage(i) {
+            if(confirm('حذف الصفحة؟')) { db.pages.splice(i, 1); saveToStorage(); renderAdminPages(); renderNav(); }
+        }
+
+        // --- Settings & Ads ---
+        function saveAds() { db.ads.top = document.getElementById('ad-top-code').value; db.ads.bottom = document.getElementById('ad-bottom-code').value; saveToStorage(); showToast('تم حفظ الإعلانات'); }
+        function saveSettings() {
+            db.name = document.getElementById('set-name').value;
+            const pass = document.getElementById('set-pass').value;
+            if(pass) db.password = pass;
+            db.seo.title = document.getElementById('set-seo-title').value;
+            db.seo.desc = document.getElementById('set-seo-desc').value;
+            saveToStorage(); applyGlobalSEO(); showToast('تم حفظ الإعدادات');
+            document.getElementById('set-pass').value = '';
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast-msg');
+            t.textContent = msg; t.style.opacity = '1'; t.style.top = '50px';
+            setTimeout(() => { t.style.opacity = '0'; t.style.top = '30px'; }, 3000);
+        }
+
+        init();
+    </script>
+</body>
+</html>
